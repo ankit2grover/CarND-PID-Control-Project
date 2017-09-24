@@ -1,6 +1,8 @@
 #ifndef PID_H
 #define PID_H
 
+#include <vector>
+using namespace std;
 class PID {
 public:
   /*
@@ -41,6 +43,19 @@ public:
   * Calculate the total PID error.
   */
   double TotalError();
+  
+  /*
+   * Twiddle the parameters (Optimization of Parameters).
+   */
+  void twiddle(double tolerance);
+  
+private:
+  // Previous CTE
+  double prev_cte;
+  
+  // Calculate sum of the dParams
+  double sum(vector<double> &dParams);
+  
 };
 
 #endif /* PID_H */
